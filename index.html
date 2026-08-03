@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio Jurídico ROBERT | Abogados</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        robert: {
+                            dark: '#0a0a0f',
+                            gold: '#c9a84c',
+                            goldLight: '#e0b86c',
+                            accent: '#1a2a3a',
+                            lightGray: '#f5f5f5',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        },
+                        slideUp: {
+                            '0%': { opacity: 0, transform: 'translateY(30px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a2e;
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 4px; }
+
+        /* Gold Gradient Text */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #c9a84c 0%, #e0b86c 40%, #c9a84c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Gold Button */
+        .gold-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #c9a84c 0%, #e0b86c 100%);
+            color: #0a0a0f;
+            font-weight: 600;
+        }
+        .gold-btn::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+        .gold-btn:hover::before { left: 100%; }
+        .gold-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(201, 168, 76, 0.4);
+        }
+
+        /* Gold Card Hover */
+        .gold-card {
+            transition: all 0.3s ease;
+        }
+        .gold-card:hover {
+            box-shadow: 0 25px 60px -10px rgba(201, 168, 76, 0.3) !important;
+            transform: translateY(-5px);
+        }
+
+        /* Gold Divider */
+        .gold-divider {
+            position: relative;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #c9a84c, transparent);
+            width: 100%;
+        }
+
+        /* Navbar scroll effect */
+        .navbar-scrolled {
+            background-color: rgba(10, 10, 15, 0.95) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hero overlay */
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(10, 10, 15, 0.92) 0%, rgba(10, 10, 15, 0.75) 50%, rgba(26, 42, 58, 0.6) 100%);
+        }
+
+        /* Hero pattern */
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Section title underline */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #c9a84c, #e0b86c);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Icon circle */
+        .icon-circle {
+            transition: all 0.3s ease;
+        }
+        .icon-circle:hover {
+            background: #c9a84c !important;
+            color: #0a0a0f !important;
+            transform: scale(1.1);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+
+        /* Stats counter */
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Testimonial quote */
+        .testimonial-quote::before {
+            content: '\201C';
+            font-size: 4rem;
+            color: #c9a84c;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Contact form input focus */
+        .form-input:focus {
+            border-color: #c9a84c !important;
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2) !important;
+        }
+
+        /* Reveal animation on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating WhatsApp button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 50;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25d366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-robert-dark/90 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-robert-gold to-robert-goldLight rounded-lg flex items-center justify-center shadow-lg">
+                        <i class="fas fa-scale-balanced text-robert-dark text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-serif text-2xl font-bold text-white tracking-wide">ROBERT</h1>
+                        <p class="text-[10px] uppercase tracking-[0.3em] text-robert-gold">Estudio Jurídico</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#inicio" class="text-white/80 hover:text-robert-gold transition-colors text-sm font-medium">Inicio</a>
+                    <a href="#nosotros" class="text-white/80 hover:text-robert-gold transition-colors text-sm font-medium">Nosotros</a>
+                    <a href="#areas" class="text-white/80 hover:text-robert-gold transition-colors text-sm font-medium">Áreas de Práctica</a>
+                    <a href="#equipo" class="text-white/80 hover:text-robert-gold transition-colors text-sm font-medium">Equipo</a>
+                    <a href="#testimonios" class="text-white/80 hover:text-robert-gold transition-colors text-sm font-medium">Testimonios</a>
+                    <a href="#contacto" class="gold-btn px-6 py-2.5 rounded-full text-sm">Contacto</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="lg:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu hidden lg:hidden bg-robert-dark/95 backdrop-blur-md border-t border-white/10">
+            <div class="px-6 py-4 space-y-3">
+                <a href="#inicio" class="block text-white/80 hover:text-robert-gold py-2 transition-colors">Inicio</a>
+                <a href="#nosotros" class="block text-white/80 hover:text-robert-gold py-2 transition-colors">Nosotros</a>
+                <a href="#areas" class="block text-white/80 hover:text-robert-gold py-2 transition-colors">Áreas de Práctica</a>
+                <a href="#equipo" class="block text-white/80 hover:text-robert-gold py-2 transition-colors">Equipo</a>
+                <a href="#testimonios" class="block text-white/80 hover:text-robert-gold py-2 transition-colors">Testimonios</a>
+                <a href="#contacto" class="gold-btn block text-center px-6 py-3 rounded-full">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center bg-robert-dark overflow-hidden">
+        <!-- Background pattern -->
+        <div class="absolute inset-0 opacity-10 hero-pattern"></div>
+        
+        <!-- Decorative gold line -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-robert-gold to-transparent"></div>
+
+        <div class="hero-overlay absolute inset-0"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <p class="text-robert-gold uppercase tracking-[0.4em] text-sm mb-6 animate-fade-in">Excelencia Legal desde 1995</p>
+            <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 animate-slide-up">
+                Defendemos tus derechos<br>
+                <span class="gold-gradient-text">con pasión y precisión</span>
+            </h1>
+            <p class="text-white/70 text-lg max-w-2xl mx-auto mb-10 animate-fade-in-up" style="animation-delay: 0.3s;">
+                En Estudio Jurídico Robert, combinamos experiencia, dedicación y estrategia legal para proteger tus intereses y alcanzar los mejores resultados.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.5s;">
+                <a href="#contacto" class="gold-btn px-8 py-4 rounded-full text-base w-full sm:w-auto">
+                    <i class="fas fa-handshake mr-2"></i> Consulta Gratuita
+                </a>
+                <a href="#areas" class="px-8 py-4 rounded-full text-base border-2 border-robert-gold/50 text-robert-gold hover:bg-robert-gold hover:text-robert-dark transition-all w-full sm:w-auto">
+                    <i class="fas fa-gavel mr-2"></i> Nuestros Servicios
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#nosotros" class="text-robert-gold text-2xl">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== NOSOTROS ===== -->
+    <section id="nosotros" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Image side -->
+                <div class="reveal relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80" alt="Estudio Jurídico" class="w-full h-[500px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-robert-dark/60 to-transparent"></div>
+                    </div>
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-6 -right-6 bg-robert-dark rounded-2xl p-6 shadow-2xl hidden sm:block">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-robert-gold to-robert-goldLight rounded-full flex items-center justify-center">
+                                <i class="fas fa-award text-robert-dark text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-robert-gold font-serif text-2xl font-bold">25+</p>
+                                <p class="text-white/70 text-sm">Años de Trayectoria</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text side -->
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <p class="text-robert-gold uppercase tracking-[0.3em] text-sm mb-4">Sobre Nosotros</p>
+                    <h2 class="font-serif text-4xl sm:text-5xl font-bold text-robert-dark mb-6 section-title text-left">Un legado de<br>justicia y compromiso</h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        Desde 1995, el Estudio Jurídico Robert ha brindado asesoramiento legal de excelencia, combinando la tradición del derecho con estrategias modernas e innovadoras.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                        Nuestro equipo de abogados altamente especializados trabaja con dedicación y ética profesional para garantizar que cada cliente reciba la atención personalizada que merece.
+                    </p>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-robert-gold/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-robert-gold text-sm"></i>
+                            </div>
+                            <p class="text-gray-700"><strong class="text-robert-dark">Compromiso total</strong> con cada caso y cada cliente.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-robert-gold/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-robert-gold text-sm"></i>
+                            </div>
+                            <p class="text-gray-700"><strong class="text-robert-dark">Transparencia</strong> en cada paso del proceso legal.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-robert-gold/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-robert-gold text-sm"></i>
+                            </div>
+                            <p class="text-gray-700"><strong class="text-robert-dark">Resultados</strong> que respaldan nuestra reputación.</p>
+                        </div>
+                    </div>
+                    <a href="#contacto" class="gold-btn inline-flex items-center px-8 py-4 rounded-full">
+                        <i class="fas fa-arrow-right mr-2"></i> Conócenos Mejor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ÁREAS DE PRÁCTICA ===== -->
+    <section id="areas" class="py-24 bg-robert-lightGray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <p class="text-robert-gold uppercase tracking-[0.3em] text-sm mb-4">Qué Hacemos</p>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-robert-dark mb-4 section-title">Áreas de Práctica</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto mt-6">Ofrecemos servicios legales integrales en las áreas más demandadas del derecho.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="gold-card reveal bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-robert-dark rounded-xl flex items-center justify-center mb-6 icon-circle">
+                        <i class="fas fa-gavel text-robert-gold text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-robert-dark mb-3">Derecho Penal</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">Defensa penal estratégica y representación en todas las etapas del proceso judicial.</p>
+                    <a href="#contacto" class="text-robert-gold font-medium hover:text-robert-dark transition-colors inline-flex items-center">
+                        Saber más <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="gold-card reveal bg-white rounded-2xl p-8 shadow-lg border border-gray-100" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-robert-dark rounded-xl flex items-center justify-center mb-6 icon-circle">
+                        <i class="fas fa-briefcase text-robert-gold text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-robert-dark mb-3">Derecho Laboral</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">Asesoramiento a trabajadores y empresas en conflictos laborales, despidos y negociaciones.</p>
+                    <a href="#contacto" class="text-robert-gold font-medium hover:text-robert-dark transition-colors inline-flex items-center">
+                        Saber más <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="gold-card reveal bg-white rounded-2xl p-8 shadow-lg border border-gray-100" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-robert-dark rounded-xl flex items-center justify-center mb-6 icon-circle">
+                        <i class="fas fa-house-chimney text-robert-gold text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-robert-dark mb-3">Derecho Civil</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">Contratos, sucesiones, daños y perjuicios, y toda la gama del derecho civil.</p>
+                    <a href="#contacto" class="text-robert-gold font-medium hover:text-robert-dark transition-colors inline-flex items-center">
+                        Saber más <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="gold-card reveal bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-robert-dark rounded-xl flex items-center justify-center mb-6 icon-circle">
+                        <i class="fas fa-building text-robert-gold text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-robert-dark mb-3">Derecho Comercial</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">Constitución de sociedades, contratos comerciales, fusiones y adquisiciones.</p>
+                    <a href="#contacto" class="text-robert-gold font-medium hover:text-robert-dark transition-colors inline-flex items-center">
+                        Saber más <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="gold-card reveal bg-white rounded-2xl p-8 shadow-lg border border-gray-100" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-robert-dark rounded-xl flex items-center justify-center mb-6 icon-circle">
+                        <i class="fas fa-users text-robert-gold text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-robert-dark mb-3">Derecho de Familia</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">Divorcios, alimentos, tenencia, adopciones y mediación familiar con sensibilidad.</p>
+                    <a href="#contacto" class="text-robert-gold font-medium hover:text-robert-dark transition-colors inline-flex items-center">
+                        Saber más <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="gold-card reveal bg-white rounded-2xl p-8 shadow-lg border border-gray-100" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-robert-dark rounded-xl flex items-center justify-center mb-6 icon-circle">
+                        <i class="fas fa-file-invoice-dollar text-robert-gold text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-robert-dark mb-3">Derecho Tributario</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">Planificación fiscal, defensa ante AFIP y asesoramiento en impuestos nacionales y provinciales.</p>
+                    <a href="#contacto" class="text-robert-gold font-medium hover:text-robert-dark transition-colors inline-flex items-center">
+                        Saber más <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EQUIPO ===== -->
+    <section id="equipo" class="py-24 bg-robert-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <p class="text-robert-gold uppercase tracking-[0.3em] text-sm mb-4">Nuestro Equipo</p>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-white mb-4 section-title">Profesionales de Excelencia</h2>
+                <p class="text-white/60 text-lg max-w-2xl mx-auto mt-6">Un equipo multidisciplinario comprometido con la justicia y la defensa de tus derechos.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Team member 1 -->
+                <div class="gold-card reveal bg-white/5 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10">
+                    <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-robert-gold to-robert-goldLight flex items-center justify-center mb-6 shadow-xl">
+                        <span class="font-serif text-5xl font-bold text-robert-dark">FR</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-1">Dr. Fernando Robert</h3>
+                    <p class="text-robert-gold text-sm mb-4">Socio Fundador</p>
+                    <p class="text-white/50 text-sm leading-relaxed">Especialista en Derecho Penal y Civil con más de 25 años de experiencia.</p>
+                    <div class="flex justify-center space-x-3 mt-6">
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-white/60 hover:bg-robert-gold hover:text-robert-dark transition-all">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-white/60 hover:bg-robert-gold hover:text-robert-dark transition-all">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-white/60 hover:bg-robert-gold hover:text-robert-dark transition-all">
+                            <i class="fas fa-envelope text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Team member 2 -->
+                <div class="gold-card reveal bg-white/5 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10" style="transition-delay: 0.1s;">
+                    <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-robert-gold to-robert-goldLight flex items-center justify-center mb-6 shadow-xl">
+                        <span class="font-serif text-5xl font-bold text-robert-dark">FR</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-1">Dr. Federico Robert</h3>
+                    <p class="text-robert-gold text-sm mb-4">Socio Director</p>
+                    <p class="text-white/50 text-sm leading-relaxed">Experto en Derecho Laboral y Comercial, liderando el área corporativa.</p>
+                    <div class="flex justify-center space-x-3 mt-6">
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-white/60 hover:bg-robert-gold hover:text-robert-dark transition-all">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-white/60 hover:bg-robert-gold hover:text-robert-dark transition-all">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-white/60 hover:bg-robert-gold hover:text-robert-dark transition-all">
+                            <i class="fas fa-envelope text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIOS ===== -->
+    <section id="testimonios" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <p class="text-robert-gold uppercase tracking-[0.3em] text-sm mb-4">Testimonios</p>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-robert-dark mb-4 section-title">Lo que dicen nuestros clientes</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="gold-card reveal bg-robert-lightGray rounded-2xl p-8 relative">
+                    <div class="testimonial-quote relative">
+                        <i class="fas fa-quote-left text-robert-gold text-3xl mb-4"></i>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            "El Dr. Robert me ayudó en un momento muy difícil de mi vida. Su profesionalismo y dedicación fueron excepcionales. Ganamos el caso y recuperé la tranquilidad."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-robert-gold/20 flex items-center justify-center">
+                            <span class="font-serif font-bold text-robert-gold">RM</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-robert-dark">Roberto Martínez</p>
+                            <p class="text-sm text-gray-500">Cliente - Derecho Laboral</p>
+                        </div>
+                    </div>
+                    <div class="flex text-robert-gold mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="gold-card reveal bg-robert-lightGray rounded-2xl p-8 relative" style="transition-delay: 0.1s;">
+                    <div class="testimonial-quote relative">
+                        <i class="fas fa-quote-left text-robert-gold text-3xl mb-4"></i>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            "Excelente atención y resultados. El equipo del estudio me asesoró en la constitución de mi empresa y en todos los contratos. Muy recomendables."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-robert-gold/20 flex items-center justify-center">
+                            <span class="font-serif font-bold text-robert-gold">AG</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-robert-dark">Ana Gutiérrez</p>
+                            <p class="text-sm text-gray-500">Cliente - Derecho Comercial</p>
+                        </div>
+                    </div>
+                    <div class="flex text-robert-gold mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="gold-card reveal bg-robert-lightGray rounded-2xl p-8 relative" style="transition-delay: 0.2s;">
+                    <div class="testimonial-quote relative">
+                        <i class="fas fa-quote-left text-robert-gold text-3xl mb-4"></i>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            "Atención personalizada y humana. La Dra. Álvarez me acompañó en todo el proceso de divorcio con mucha sensibilidad y profesionalismo."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-robert-gold/20 flex items-center justify-center">
+                            <span class="font-serif font-bold text-robert-gold">CS</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-robert-dark">Carlos Sánchez</p>
+                            <p class="text-sm text-gray-500">Cliente - Derecho de Familia</p>
+                        </div>
+                    </div>
+                    <div class="flex text-robert-gold mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto" class="py-24 bg-robert-lightGray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Contact info -->
+                <div class="reveal">
+                    <p class="text-robert-gold uppercase tracking-[0.3em] text-sm mb-4">Contacto</p>
+                    <h2 class="font-serif text-4xl sm:text-5xl font-bold text-robert-dark mb-6 section-title text-left">Hablemos de tu caso</h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                        Contáctanos para una consulta inicial gratuita. Nuestro equipo está listo para escucharte y brindarte la mejor asesoría legal.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-robert-dark rounded-xl flex items-center justify-center flex-shrink-0 icon-circle">
+                                <i class="fas fa-map-marker-alt text-robert-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-robert-dark mb-1">Dirección</h4>
+                                <p class="text-gray-600">Av. Corrientes 1234, Piso 5<br>Ciudad Autónoma de Buenos Aires</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-robert-dark rounded-xl flex items-center justify-center flex-shrink-0 icon-circle">
+                                <i class="fas fa-phone text-robert-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-robert-dark mb-1">Teléfono</h4>
+                                <p class="text-gray-600">+54 11 1234-5678<br>+54 11 8765-4321</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-robert-dark rounded-xl flex items-center justify-center flex-shrink-0 icon-circle">
+                                <i class="fas fa-envelope text-robert-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-robert-dark mb-1">Email</h4>
+                                <p class="text-gray-600">info@estudiorobert.com.ar<br>consultas@estudiorobert.com.ar</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-robert-dark rounded-xl flex items-center justify-center flex-shrink-0 icon-circle">
+                                <i class="fas fa-clock text-robert-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-robert-dark mb-1">Horario</h4>
+                                <p class="text-gray-600">Lunes a Viernes: 9:00 - 18:00<br>Sábados: 9:00 - 13:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social -->
+                    <div class="flex space-x-4 mt-8">
+                        <a href="#" class="w-11 h-11 bg-robert-dark rounded-full flex items-center justify-center text-robert-gold hover:bg-robert-gold hover:text-robert-dark transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 bg-robert-dark rounded-full flex items-center justify-center text-robert-gold hover:bg-robert-gold hover:text-robert-dark transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 bg-robert-dark rounded-full flex items-center justify-center text-robert-gold hover:bg-robert-gold hover:text-robert-dark transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 bg-robert-dark rounded-full flex items-center justify-center text-robert-gold hover:bg-robert-gold hover:text-robert-dark transition-all">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact form -->
+                <div class="reveal bg-white rounded-2xl p-8 shadow-xl" style="transition-delay: 0.2s;">
+                    <h3 class="font-serif text-2xl font-bold text-robert-dark mb-6">Envíanos un mensaje</h3>
+                    <form id="contactForm" class="space-y-5">
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre completo</label>
+                                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre"
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none transition-all">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="tu@email.com"
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="telefono" class="block text-sm font-medium text-gray-700 mb-2">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="+54 11 1234-5678"
+                                class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none transition-all">
+                        </div>
+                        <div>
+                            <label for="area" class="block text-sm font-medium text-gray-700 mb-2">Área de consulta</label>
+                            <select id="area" name="area" class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none transition-all bg-white">
+                                <option value="">Selecciona un área</option>
+                                <option value="penal">Derecho Penal</option>
+                                <option value="laboral">Derecho Laboral</option>
+                                <option value="civil">Derecho Civil</option>
+                                <option value="comercial">Derecho Comercial</option>
+                                <option value="familia">Derecho de Familia</option>
+                                <option value="tributario">Derecho Tributario</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-2">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Cuéntanos sobre tu caso..."
+                                class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="gold-btn w-full px-8 py-4 rounded-full text-base">
+                            <i class="fas fa-paper-plane mr-2"></i> Enviar Mensaje
+                        </button>
+                        <p id="formSuccess" class="hidden text-green-600 text-center font-medium py-2">
+                            <i class="fas fa-check-circle mr-2"></i> ¡Mensaje enviado con éxito! Te contactaremos pronto.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-robert-dark py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-robert-gold to-robert-goldLight rounded-lg flex items-center justify-center">
+                            <i class="fas fa-scale-balanced text-robert-dark"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-white">ROBERT</h3>
+                            <p class="text-[10px] uppercase tracking-[0.3em] text-robert-gold">Estudio Jurídico</p>
+                        </div>
+                    </div>
+                    <p class="text-white/50 text-sm leading-relaxed">Excelencia legal y compromiso con la justicia desde 1995.</p>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Enlaces Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-white/50 hover:text-robert-gold transition-colors text-sm">Inicio</a></li>
+                        <li><a href="#nosotros" class="text-white/50 hover:text-robert-gold transition-colors text-sm">Nosotros</a></li>
+                        <li><a href="#areas" class="text-white/50 hover:text-robert-gold transition-colors text-sm">Áreas de Práctica</a></li>
+                        <li><a href="#equipo" class="text-white/50 hover:text-robert-gold transition-colors text-sm">Equipo</a></li>
+                        <li><a href="#contacto" class="text-white/50 hover:text-robert-gold transition-colors text-sm">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Servicios</h4>
+                    <ul class="space-y-2">
+                        <li class="text-white/50 text-sm">Derecho Penal</li>
+                        <li class="text-white/50 text-sm">Derecho Laboral</li>
+                        <li class="text-white/50 text-sm">Derecho Civil</li>
+                        <li class="text-white/50 text-sm">Derecho Comercial</li>
+                        <li class="text-white/50 text-sm">Derecho de Familia</li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Contacto</h4>
+                    <ul class="space-y-2">
+                        <li class="text-white/50 text-sm flex items-start space-x-2">
+                            <i class="fas fa-map-marker-alt text-robert-gold mt-1"></i>
+                            <span>Av. Corrientes 1234, CABA</span>
+                        </li>
+                        <li class="text-white/50 text-sm flex items-center space-x-2">
+                            <i class="fas fa-phone text-robert-gold"></i>
+                            <span>+54 11 1234-5678</span>
+                        </li>
+                        <li class="text-white/50 text-sm flex items-center space-x-2">
+                            <i class="fas fa-envelope text-robert-gold"></i>
+                            <span>info@estudiorobert.com.ar</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="gold-divider mb-8"></div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between">
+                <p class="text-white/40 text-sm mb-4 sm:mb-0">© 2026 Estudio Jurídico Robert. Todos los derechos reservados.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white/40 hover:text-robert-gold transition-colors text-sm">Política de Privacidad</a>
+                    <a href="#" class="text-white/40 hover:text-robert-gold transition-colors text-sm">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/541112345678" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // Contact form
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                contactForm.reset();
+                formSuccess.classList.remove('hidden');
+                setTimeout(() => {
+                    formSuccess.classList.add('hidden');
+                }, 5000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
